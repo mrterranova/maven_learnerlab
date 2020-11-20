@@ -1,51 +1,50 @@
 package com.github.curriculeon;
 
-import com.github.curriculeon.Learner;
-import com.github.curriculeon.Teacher;
+import com.github.curriculeon.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Classroom {
+public enum  Classroom {
     INSTANCE;
     private Students students;
     private Instructors instructors;
 
+    //THIS IS WHERE I HAVE QUESTIONS 12- 19
     Classroom() {
         this(Students.getInstance(), Instructors.getInstance());
     }
 
-    Classroom(Students students, Instructors instructors) {
+    Classroom(Students students, Instructors instructors){
         this.students = students;
         this.instructors = instructors;
     }
 
-    public void hostLecture(Teacher teacher, double numberOfHours) {
-        Person[] personArray = (Person[]) students.toArray();
-        Learner[] learnerArray = new Learner[personArray.length];
-        for (int i = 0; i < personArray.length; i++) {
-            Person currentPerson = personArray[i];
-            Learner personAsLearner = (Learner) currentPerson;
-            learnerArray[i] = personAsLearner;
+    public void hostLecture (Teacher teacher, double numberOfHours) {
+        Student[] personsArray = (Student[]) students.toArray();
+        Learner[] learnersArray = new Learner[personsArray.length];
+        for (int i = 0; i < learnersArray.length; i++) {
+            Person currentPerson = personsArray[i];
+            Learner personAsLearner = (Learner)currentPerson;
+            learnersArray[i] = personAsLearner;
         }
-        teacher.lecture(learnerArray, numberOfHours);
+        teacher.lecture(learnersArray, numberOfHours);
     }
 
-    //overloading previous method
-    public void hostLecture(Long idOfInstructor, double numberOfHours) {
-        Instructors instructorsSingleton = Instructors.getInstance();
-        Person instructorAsPerson = instructorsSingleton.findById(idOfInstructor);
+    public void hostLecture (Long idOfInstructor, double numberOfHours) {
+        Person instructorAsPerson = Instructors.getInstance().findById(idOfInstructor);
         Teacher instructorAsTeacher = (Teacher) instructorAsPerson;
-        hostLecture(instructorAsTeacher,numberOfHours);
     }
 
-//    public Map<Student, Double> getStudyMap() {
-//        Map<Student, Double> map = new HashMap<>();
-//        for (Student student : Students.getInstance()) {
-//            Double totalStudyTime = student.getTotalStudyTime();
-//            map.put(student, totalStudyTime);
-//        }
-//        return map;
-//    }
-//}
+    public Map<Student,  Double> getStudyMap(){
+        Map<Student, Double> map = new HashMap<>();
+        for (Person person: Students.getInstance()) {
+            Student student = (Student) person;
+            Double totalStudyTime = student.getTotalStudyTime();
+            map.put(student, totalStudyTime);
+        }
+        return map;
+
+    }
 }
+
