@@ -54,3 +54,4 @@ abstract public class People<Type extends Person> implements Iterable<Person> {
    abstract public Learner[] toArray();
 
 }
+
