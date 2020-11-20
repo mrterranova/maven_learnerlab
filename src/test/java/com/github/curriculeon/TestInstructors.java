@@ -11,8 +11,8 @@ public class TestInstructors {
     @Test
     public void test() {
         List<String> newList = new ArrayList<>();
-        newList.add("teacher1");
-        newList.add("teacher2");
+        newList.add("Teacher1");
+        newList.add("Teacher2");
 
         for (Person person: Instructors.getInstance()) {
             String personName = person.getName();
