@@ -33,4 +33,3 @@ public class TestPerson {
         Assert.assertEquals(expectedName, person.getName());
     }
 }
-
